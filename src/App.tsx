@@ -137,8 +137,9 @@ function App() {
           <button className="whitespace-nowrap px-3 py-2 hover:bg-gray-100 rounded">
             Monthly Focus
           </button>
-          <button className="whitespace-nowrap px-3 py-2 bg-gray-200 rounded font-medium border-b-2 border-gray-800">
+          <button className="whitespace-nowrap px-3 py-2 bg-gray-200 rounded font-medium border-b-2 border-gray-800 flex items-center gap-2">
             Marketing Imagery
+            <span className="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">New</span>
           </button>
           <button className="whitespace-nowrap px-3 py-2 hover:bg-gray-100 rounded">
             Plan a Party
@@ -153,7 +154,7 @@ function App() {
       </header>
 
       {/* Main Layout */}
-      <div className="flex">
+      <div className="flex min-w-0">
         {/* Desktop Sidebar */}
         {currentView !== 'home' && (
           <DesktopSidebar
@@ -164,7 +165,7 @@ function App() {
         )}
 
         {/* Main Content */}
-        <main className="flex-1 pb-20 md:pb-0">
+        <main className="flex-1 pb-20 md:pb-0 min-w-0">
           {currentView === 'home' && (
             <HomeView items={processedNavigation} onCategoryClick={handleNavigate} />
           )}

@@ -153,7 +153,7 @@ export function AssetView({ categoryName, parentName, onBack, onBackToHome }: As
   const hasActiveFilters = activeFilters.length > 0;
 
   return (
-    <div className="p-[15px] md:p-[25px]">
+    <div className="p-[15px] md:p-[25px] min-w-0 w-full">
       {/* Header with border */}
       <div className="pb-6 mb-6 border-b-2 border-gray-300">
         {/* Breadcrumb */}
@@ -204,7 +204,7 @@ export function AssetView({ categoryName, parentName, onBack, onBackToHome }: As
       )}
 
       {/* Asset Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 2xl:grid-cols-[repeat(auto-fit,minmax(234px,306px))] gap-[10px] md:gap-[25px]">
+      <div className="flex items-start content-start gap-[10px] md:gap-[25px] self-stretch flex-wrap">
         {filteredAndSortedAssets.map((asset) => (
           <AssetCard
             key={asset.id}

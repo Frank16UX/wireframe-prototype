@@ -103,16 +103,16 @@ export function AssetToolbar({
   const hasActiveFilters = contentFilter !== null || usageFilters.length > 0 || orientationFilters.length > 0;
 
   return (
-    <div className="flex items-center gap-3 mb-4">
+    <div className="flex items-center gap-3 mb-4 min-w-0">
       {/* Quick Filter Chips */}
-      <div className="flex items-center gap-2 flex-1">
+      <div className="flex items-center gap-2 flex-1 overflow-x-auto min-w-0 scrollbar-hide">
         {assetTypes.map((type) => {
           const isSelected = selectedTypes.includes(type.id);
           return (
             <button
               key={type.id}
               onClick={() => handleTypeClick(type.id)}
-              className={`px-4 py-2 rounded-full border-2 text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-full border-2 text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
                 isSelected
                   ? 'bg-gray-900 text-white border-gray-900'
                   : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'

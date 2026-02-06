@@ -10,7 +10,7 @@ export function CategoryView({ category, onBack, onSubcategoryClick }: CategoryV
   const items = category.children || [];
 
   return (
-    <div className="p-[15px] md:p-[25px]">
+    <div className="p-[15px] md:p-[25px] min-w-0 w-full">
       {/* Header with border */}
       <div className="pb-6 mb-6 border-b-2 border-gray-300">
         {/* Breadcrumb */}

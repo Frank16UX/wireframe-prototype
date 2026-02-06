@@ -20,7 +20,7 @@ const fileTypeLabels = {
 
 export function AssetCard({ fileName, fileType, thumbnailUrl }: AssetCardProps) {
   return (
-    <div className="border-2 border-gray-300 rounded-lg overflow-hidden hover:border-gray-400 cursor-pointer transition-colors">
+    <div className="border-2 border-gray-300 rounded-lg overflow-hidden hover:border-gray-400 cursor-pointer transition-colors flex-1 min-w-[160px] max-w-[200px] md:min-w-[234px] md:max-w-[248px] basis-[calc(50%-5px)] md:basis-auto">
       {/* Thumbnail Container */}
       <div className="relative aspect-[234/160] bg-gray-100">
         <img 
