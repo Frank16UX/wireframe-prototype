@@ -1,7 +1,7 @@
 import { type NavItem } from '../data/navigation';
 import { CategoryCard } from './CategoryCard';
-import headerWoman from '../assets/images/HeaderAssets/9daf05f1efa0754bfb48f6f6a23c87d51abeca62.png';
-import headerLine from '../assets/images/HeaderAssets/e703dbdec87088a708ca16f709d3effeed6ebc29.svg';
+import headerWoman from '../assets/images/model.png';
+import headerLine from '../assets/images/blob-outline.svg';
 
 interface HomeViewProps {
   items: NavItem[];

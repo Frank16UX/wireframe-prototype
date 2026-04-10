@@ -58,6 +58,10 @@ export function TreeView({ items, onItemClick, selectedId, level = 0 }: TreeView
         const isExpanded = expandedItems.has(item.id);
         const hasChildren = item.children && item.children.length > 0;
         const isSelected = item.id === selectedId;
+        // Level 0: base padding (16px), icon+gap adds 32px visually
+        // Level 1+: base padding + 32px (to align with parent text) + 12px per additional depth
+        const basePadding = level === 0 ? 16 : 48 + (level - 1) * 12;
+        const leftPadding = isSelected ? basePadding - 4 : basePadding;
 
         return (
           <div key={item.id}>
@@ -65,16 +69,31 @@ export function TreeView({ items, onItemClick, selectedId, level = 0 }: TreeView
               className={`flex items-start gap-2 py-2 px-4 ${
                 isSelected ? 'bg-gray-200 border-l-4 border-black' : 'hover:bg-gray-100'
               } cursor-pointer transition-colors`}
-              style={{ paddingLeft: `${isSelected ? (16 + level * 16 - 4) : (16 + level * 16)}px` }}
-              onClick={() => onItemClick(item)}
+              style={{ paddingLeft: `${leftPadding}px` }}
+              onClick={() => {
+                if (hasChildren) {
+                  setExpandedItems((prev) => {
+                    const next = new Set(prev);
+                    if (next.has(item.id)) {
+                      next.delete(item.id);
+                    } else {
+                      next.add(item.id);
+                    }
+                    return next;
+                  });
+                }
+                onItemClick(item);
+              }}
             >
               {/* Left side: Icon and Label */}
               <div className="flex items-start gap-2 flex-1 min-w-0">
-                <div className={`w-6 h-6 border-2 rounded flex-shrink-0 flex items-center justify-center mt-0.5 ${
-                  isSelected ? 'border-black bg-gray-300 text-black' : 'border-gray-400'
-                }`}>
-                  <div className={`w-3 h-3 rounded-sm ${isSelected ? 'bg-black' : 'bg-gray-300'}`} />
-                </div>
+                {level === 0 && (
+                  <div className={`w-6 h-6 border-2 rounded flex-shrink-0 flex items-center justify-center mt-0.5 ${
+                    isSelected ? 'border-black bg-gray-300 text-black' : 'border-gray-400'
+                  }`}>
+                    <div className={`w-3 h-3 rounded-sm ${isSelected ? 'bg-black' : 'bg-gray-300'}`} />
+                  </div>
+                )}
                 <span className={`text-sm mt-1 flex-1 break-words ${isSelected ? 'font-semibold text-black' : ''}`}>
                   {item.label}
                 </span>
